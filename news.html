@@ -3,33 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Beijing Bingtangxin Trading Co., Ltd. News & Updates - Latest company news, industry insights, and announcements about our agricultural and mobile solutions.">
-    <meta name="keywords" content="company news, agricultural industry news, mobile app updates, trade news, agricultural technology">
+    <meta name="description" content="Beijing Jinlei Technology News - Latest updates, industry insights, company announcements, and technology trends from our team.">
+    <meta name="keywords" content="tech news, company updates, mobile app development, IoT trends, software development news, Beijing Jinlei">
     <meta name="robots" content="index, follow">
-    <meta name="author" content="Beijing Bingtangxin Trading Co., Ltd.">
-    <meta property="og:title" content="News & Updates - Beijing Bingtangxin Trading Co., Ltd.">
-    <meta property="og:description" content="Stay updated with the latest news about agricultural trade, mobile app innovations, and company announcements.">
+    <meta name="author" content="Beijing Jinlei Technology Co., Ltd.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="News & Updates - Beijing Jinlei Technology Co., Ltd.">
+    <meta property="og:description" content="Stay updated with the latest news, insights, and announcements from Beijing Jinlei Technology.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bjbingtang.com/news.html">
-    <link rel="canonical" href="https://bjbingtang.com/news.html">
-    <title>News & Updates - Beijing Bingtangxin Trading Co., Ltd.</title>
+    <meta property="og:url" content="https://bjjinlei.com/news.html">
+    <link rel="canonical" href="https://bjjinlei.com/news.html">
+    <title>News & Updates - Beijing Jinlei Technology Co., Ltd.</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <svg viewBox="0 0 100 100" width="80" height="80" class="preloader-logo">
+                <defs>
+                    <linearGradient id="preloaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#00d4ff"/>
+                        <stop offset="100%" style="stop-color:#0099cc"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#preloaderGrad)" stroke-width="3" stroke-dasharray="283" stroke-dashoffset="0">
+                    <animate attributeName="stroke-dashoffset" from="283" to="0" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <polygon points="50,20 80,50 50,80 20,50" fill="url(#preloaderGrad)" opacity="0.8"/>
+            </svg>
+            <p class="preloader-text">Loading News</p>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
                 <svg viewBox="0 0 200 50" width="180" height="45">
                     <defs>
-                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#e74c3c"/>
-                            <stop offset="100%" style="stop-color:#c0392b"/>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d4ff"/>
+                            <stop offset="100%" style="stop-color:#0099cc"/>
                         </linearGradient>
                     </defs>
                     <circle cx="25" cy="25" r="20" fill="url(#logoGrad)"/>
-                    <path d="M15 25 L25 15 L35 25 L25 35 Z" fill="white"/>
-                    <text x="55" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">BINGTANGXIN</text>
+                    <polygon points="25,12 35,25 25,38 15,25" fill="white"/>
+                    <text x="55" y="30" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">JINLEI</text>
                 </svg>
             </a>
             <ul class="nav-menu" id="navMenu">
@@ -39,51 +59,75 @@
                 <li><a href="news.html" class="active">News</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <button class="menu-toggle" id="menuToggle">
-                <svg viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <svg viewBox="0 0 24 24" width="24" height="24" class="menu-icon">
+                    <path class="menu-line" d="M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path class="menu-line" d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path class="menu-line" d="M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
             </button>
         </div>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <ul class="mobile-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="culture.html">Culture</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
     <!-- Page Header -->
     <section class="page-header">
+        <div class="page-header-background">
+            <div class="hero-grid"></div>
+            <div class="hero-gradient"></div>
+        </div>
         <div class="page-header-content">
-            <h1 class="animate-fade-in">News & Updates</h1>
-            <p class="animate-fade-in-delay">Stay informed about our latest developments, industry insights, and company announcements</p>
+            <span class="section-badge animate-on-scroll">Stay Informed</span>
+            <h1 class="animate-on-scroll">News & Updates</h1>
+            <p class="animate-on-scroll">The latest insights, announcements, and industry trends from Beijing Jinlei Technology</p>
         </div>
     </section>
 
-    <!-- Featured News -->
-    <section class="featured-news">
+    <!-- Featured Article -->
+    <section class="featured-article-section">
         <div class="container">
             <div class="featured-article animate-on-scroll">
-                <div class="article-image">
+                <div class="featured-article-image">
                     <svg viewBox="0 0 600 400" width="600" height="400">
                         <defs>
-                            <linearGradient id="newsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#e74c3c"/>
-                                <stop offset="100%" style="stop-color:#c0392b"/>
+                            <linearGradient id="featuredGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.3"/>
+                                <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:0.3"/>
                             </linearGradient>
                         </defs>
-                        <rect width="600" height="400" fill="url(#newsGrad)"/>
-                        <circle cx="100" cy="100" r="80" fill="white" opacity="0.1"/>
-                        <circle cx="500" cy="300" r="120" fill="white" opacity="0.1"/>
-                        <rect x="200" y="150" width="200" height="100" rx="10" fill="white"/>
-                        <rect x="220" y="170" width="160" height="20" fill="#e74c3c"/>
-                        <rect x="220" y="200" width="120" height="10" fill="#ecf0f1"/>
-                        <rect x="220" y="220" width="140" height="10" fill="#ecf0f1"/>
-                        <circle cx="300" cy="320" r="40" fill="white"/>
-                        <text x="300" y="325" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#e74c3c">NEW</text>
+                        <rect width="600" height="400" fill="url(#featuredGrad)"/>
+                        <circle cx="300" cy="200" r="100" fill="rgba(0,212,255,0.2)"/>
+                        <circle cx="300" cy="200" r="60" fill="rgba(155,89,182,0.2)"/>
+                        <rect x="200" y="150" width="200" height="100" rx="10" fill="rgba(255,255,255,0.1)"/>
+                        <text x="300" y="200" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" fill="white" font-weight="700">FEATURED</text>
+                        <!-- Decorative elements -->
+                        <circle cx="100" cy="100" r="30" fill="#00d4ff" opacity="0.2"/>
+                        <circle cx="500" cy="300" r="40" fill="#9b59b6" opacity="0.2"/>
+                        <rect x="450" y="80" width="100" height="60" rx="5" fill="rgba(255,255,255,0.05)"/>
                     </svg>
                 </div>
-                <div class="article-content">
-                    <span class="article-badge">Featured</span>
-                    <h2>Mobile App 2.0: Revolutionizing Agricultural Business Management</h2>
-                    <p class="article-date">December 15, 2024</p>
-                    <p>We are thrilled to announce the launch of our enhanced mobile management application, featuring advanced AI-powered inventory prediction, real-time market analytics, and seamless multi-platform synchronization. This major update brings enterprise-grade features to businesses of all sizes.</p>
-                    <a href="#" class="btn btn-secondary">Read More</a>
+                <div class="featured-article-content">
+                    <span class="article-badge">Featured Article</span>
+                    <span class="article-date">January 15, 2025</span>
+                    <h2>The Future of Mobile Business Management: AI-Driven Solutions</h2>
+                    <p>Discover how artificial intelligence is revolutionizing mobile business management applications. Our latest research shows that AI-powered features are increasing operational efficiency by up to 40% for businesses using our management solutions.</p>
+                    <p>In this comprehensive article, we explore the integration of machine learning algorithms into our flagship mobile applications, enabling predictive inventory management, automated customer segmentation, and intelligent sales forecasting that helps businesses stay ahead of market trends.</p>
+                    <a href="#" class="read-more-btn">
+                        <span>Read Full Article</span>
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -92,187 +136,125 @@
     <!-- Latest News Grid -->
     <section class="news-grid-section">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Latest Updates</h2>
-            <div class="news-grid">
-                <article class="news-card animate-on-scroll">
-                    <div class="news-image">
-                        <svg viewBox="0 0 400 250" width="400" height="250">
-                            <rect width="400" height="250" fill="#27ae60"/>
-                            <circle cx="50" cy="50" r="40" fill="white" opacity="0.2"/>
-                            <circle cx="350" cy="200" r="60" fill="white" opacity="0.2"/>
-                            <rect x="120" y="80" width="160" height="90" rx="8" fill="white"/>
-                            <rect x="140" y="100" width="120" height="15" fill="#27ae60"/>
-                            <rect x="140" y="125" width="80" height="8" fill="#ecf0f1"/>
-                            <rect x="140" y="140" width="100" height="8" fill="#ecf0f1"/>
-                            <circle cx="200" cy="190" r="25" fill="#27ae60"/>
-                            <path d="M190 190 L200 180 L210 190 L200 200 Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-category">Partnership</span>
-                        <h3>Strategic Partnership with European Agricultural Cooperative</h3>
-                        <p class="news-date">December 10, 2024</p>
-                        <p>We are proud to announce our new strategic partnership with a leading European agricultural cooperative, expanding our reach to serve more businesses across the continent.</p>
-                    </div>
-                </article>
-
-                <article class="news-card animate-on-scroll">
-                    <div class="news-image">
-                        <svg viewBox="0 0 400 250" width="400" height="250">
-                            <rect width="400" height="250" fill="#3498db"/>
-                            <circle cx="350" cy="50" r="40" fill="white" opacity="0.2"/>
-                            <circle cx="50" cy="200" r="60" fill="white" opacity="0.2"/>
-                            <rect x="120" y="80" width="160" height="90" rx="8" fill="white"/>
-                            <rect x="140" y="100" width="120" height="15" fill="#3498db"/>
-                            <rect x="140" y="125" width="80" height="8" fill="#ecf0f1"/>
-                            <rect x="140" y="140" width="100" height="8" fill="#ecf0f1"/>
-                            <rect x="170" y="175" width="60" height="30" rx="5" fill="#3498db"/>
-                            <text x="200" y="195" text-anchor="middle" font-family="Arial" font-size="10" fill="white">50K+</text>
-                        </svg>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-category">Milestone</span>
-                        <h3>App Downloads Surpass 50,000 Milestone</h3>
-                        <p class="news-date">December 5, 2024</p>
-                        <p>Our mobile management application has reached an incredible milestone of 50,000+ downloads, demonstrating the trust businesses place in our solutions.</p>
-                    </div>
-                </article>
-
-                <article class="news-card animate-on-scroll">
-                    <div class="news-image">
-                        <svg viewBox="0 0 400 250" width="400" height="250">
-                            <rect width="400" height="250" fill="#f39c12"/>
-                            <circle cx="200" cy="125" r="80" fill="white" opacity="0.2"/>
-                            <rect x="120" y="80" width="160" height="90" rx="8" fill="white"/>
-                            <rect x="140" y="100" width="120" height="15" fill="#f39c12"/>
-                            <rect x="140" y="125" width="80" height="8" fill="#ecf0f1"/>
-                            <rect x="140" y="140" width="100" height="8" fill="#ecf0f1"/>
-                            <path d="M180 180 L200 160 L220 180" stroke="#f39c12" stroke-width="3" fill="none"/>
-                            <path d="M180 200 L200 180 L220 200" stroke="#f39c12" stroke-width="3" fill="none"/>
-                        </svg>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-category">Innovation</span>
-                        <h3>Introducing AI-Powered Demand Forecasting</h3>
-                        <p class="news-date">November 28, 2024</p>
-                        <p>Our latest feature update includes AI-powered demand forecasting, helping businesses predict inventory needs with up to 95% accuracy using machine learning algorithms.</p>
-                    </div>
-                </article>
-
-                <article class="news-card animate-on-scroll">
-                    <div class="news-image">
-                        <svg viewBox="0 0 400 250" width="400" height="250">
-                            <rect width="400" height="250" fill="#9b59b6"/>
-                            <circle cx="300" cy="60" r="50" fill="white" opacity="0.2"/>
-                            <circle cx="100" cy="190" r="50" fill="white" opacity="0.2"/>
-                            <rect x="120" y="80" width="160" height="90" rx="8" fill="white"/>
-                            <rect x="140" y="100" width="120" height="15" fill="#9b59b6"/>
-                            <rect x="140" y="125" width="80" height="8" fill="#ecf0f1"/>
-                            <rect x="140" y="140" width="100" height="8" fill="#ecf0f1"/>
-                            <circle cx="200" cy="180" r="20" fill="#9b59b6"/>
-                            <text x="200" y="185" text-anchor="middle" font-family="Arial" font-size="12" fill="white">+20</text>
-                        </svg>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-category">Expansion</span>
-                        <h3>20 New Product Categories Added</h3>
-                        <p class="news-date">November 20, 2024</p>
-                        <p>We've expanded our product portfolio with 20 new categories, including organic produce, specialty items, and premium imported goods to meet diverse market demands.</p>
-                    </div>
-                </article>
-
-                <article class="news-card animate-on-scroll">
-                    <div class="news-image">
-                        <svg viewBox="0 0 400 250" width="400" height="250">
-                            <rect width="400" height="250" fill="#1abc9c"/>
-                            <circle cx="80" cy="70" r="50" fill="white" opacity="0.2"/>
-                            <circle cx="320" cy="180" r="50" fill="white" opacity="0.2"/>
-                            <rect x="120" y="80" width="160" height="90" rx="8" fill="white"/>
-                            <rect x="140" y="100" width="120" height="15" fill="#1abc9c"/>
-                            <rect x="140" y="125" width="80" height="8" fill="#ecf0f1"/>
-                            <rect x="140" y="140" width="100" height="8" fill="#ecf0f1"/>
-                            <rect x="160" y="175" width="80" height="25" rx="3" fill="#1abc9c"/>
-                            <text x="200" y="192" text-anchor="middle" font-family="Arial" font-size="8" fill="white">CERTIFIED</text>
-                        </svg>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-category">Certification</span>
-                        <h3>ISO 9001:2015 Certification Achieved</h3>
-                        <p class="news-date">November 15, 2024</p>
-                        <p>We are proud to announce the achievement of ISO 9001:2015 quality management certification, demonstrating our commitment to the highest industry standards.</p>
-                    </div>
-                </article>
-
-                <article class="news-card animate-on-scroll">
-                    <div class="news-image">
-                        <svg viewBox="0 0 400 250" width="400" height="250">
-                            <rect width="400" height="250" fill="#e74c3c"/>
-                            <circle cx="200" cy="125" r="90" fill="white" opacity="0.15"/>
-                            <rect x="120" y="80" width="160" height="90" rx="8" fill="white"/>
-                            <rect x="140" y="100" width="120" height="15" fill="#e74c3c"/>
-                            <rect x="140" y="125" width="80" height="8" fill="#ecf0f1"/>
-                            <rect x="140" y="140" width="100" height="8" fill="#ecf0f1"/>
-                            <circle cx="170" cy="180" r="15" fill="#e74c3c"/>
-                            <circle cx="200" cy="180" r="15" fill="#f39c12"/>
-                            <circle cx="230" cy="180" r="15" fill="#3498db"/>
-                        </svg>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-category">Event</span>
-                        <h3>Join Us at Asia Fruit Logistica 2024</h3>
-                        <p class="news-date">November 10, 2024</p>
-                        <p>Visit our booth at Asia Fruit Logistica 2024 to explore our latest products and discover how our mobile solutions can transform your agricultural business.</p>
-                    </div>
-                </article>
+            <div class="section-header animate-on-scroll">
+                <span class="section-badge">Latest Updates</span>
+                <h2 class="section-title">Recent News & Articles</h2>
+                <p class="section-subtitle">Stay updated with our latest developments and industry insights</p>
             </div>
-        </div>
-    </section>
+            <div class="news-grid">
+                <!-- News Item 1 -->
+                <article class="news-card animate-on-scroll">
+                    <div class="news-card-image">
+                        <svg viewBox="0 0 400 250" width="400" height="250">
+                            <rect width="400" height="250" fill="rgba(0,212,255,0.1)"/>
+                            <rect x="150" y="80" width="100" height="90" rx="10" fill="#00d4ff" opacity="0.3"/>
+                            <circle cx="200" cy="125" r="30" fill="#00d4ff" opacity="0.5"/>
+                            <text x="200" y="130" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white">IoT</text>
+                        </svg>
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-date">January 10, 2025</span>
+                        <span class="news-category">Technology</span>
+                        <h3>IoT Integration Now Available in All Management Apps</h3>
+                        <p>We're excited to announce that our IoT integration features are now available across all our mobile management applications, enabling seamless device connectivity.</p>
+                        <a href="#" class="news-link">Read More</a>
+                    </div>
+                </article>
 
-    <!-- Industry Insights -->
-    <section class="insights-section">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">Industry Insights</h2>
-            <div class="insights-grid">
-                <div class="insight-card animate-on-scroll">
-                    <div class="insight-icon">
-                        <svg viewBox="0 0 64 64" width="64" height="64">
-                            <circle cx="32" cy="32" r="30" fill="#27ae60" opacity="0.2"/>
-                            <path d="M20 20 L32 12 L44 20 L44 44 L20 44 Z" fill="#27ae60"/>
-                            <path d="M20 20 L32 28 L44 20" fill="#2ecc71"/>
-                            <rect x="28" y="32" width="8" height="12" fill="white"/>
+                <!-- News Item 2 -->
+                <article class="news-card animate-on-scroll">
+                    <div class="news-card-image">
+                        <svg viewBox="0 0 400 250" width="400" height="250">
+                            <rect width="400" height="250" fill="rgba(155,89,182,0.1)"/>
+                            <circle cx="200" cy="125" r="60" fill="#9b59b6" opacity="0.3"/>
+                            <rect x="160" y="95" width="80" height="60" rx="5" fill="#9b59b6" opacity="0.5"/>
+                            <text x="200" y="130" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">GLOBAL</text>
                         </svg>
                     </div>
-                    <h3>Sustainable Agriculture Trends 2025</h3>
-                    <p>Explore the latest trends in sustainable farming practices and how they're reshaping the agricultural supply chain globally.</p>
-                    <a href="#" class="read-more">Read Article</a>
-                </div>
-                <div class="insight-card animate-on-scroll">
-                    <div class="insight-icon">
-                        <svg viewBox="0 0 64 64" width="64" height="64">
-                            <circle cx="32" cy="32" r="30" fill="#3498db" opacity="0.2"/>
-                            <rect x="18" y="22" width="28" height="24" rx="3" fill="#3498db"/>
-                            <rect x="22" y="28" width="20" height="4" fill="white"/>
-                            <rect x="22" y="36" width="12" height="4" fill="white"/>
-                            <path d="M26 48 L26 52 L38 52 L38 48" fill="#3498db"/>
+                    <div class="news-card-content">
+                        <span class="news-date">January 5, 2025</span>
+                        <span class="news-category">Company News</span>
+                        <h3>Beijing Jinlei Expands to 50 Countries Worldwide</h3>
+                        <p>Our commitment to global service has reached a new milestone. Our mobile applications are now available in 50 countries across six continents.</p>
+                        <a href="#" class="news-link">Read More</a>
+                    </div>
+                </article>
+
+                <!-- News Item 3 -->
+                <article class="news-card animate-on-scroll">
+                    <div class="news-card-image">
+                        <svg viewBox="0 0 400 250" width="400" height="250">
+                            <rect width="400" height="250" fill="rgba(39,174,96,0.1)"/>
+                            <rect x="120" y="90" width="160" height="70" rx="8" fill="#27ae60" opacity="0.3"/>
+                            <path d="M140 140 L160 120 L180 135 L200 110 L220 130 L240 115 L260 140" stroke="#27ae60" stroke-width="3" fill="none"/>
+                            <circle cx="200" cy="90" r="15" fill="#27ae60" opacity="0.5"/>
                         </svg>
                     </div>
-                    <h3>Digital Transformation in Wholesale Trade</h3>
-                    <p>How digital tools and mobile applications are revolutionizing the way wholesalers manage their inventory and customer relationships.</p>
-                    <a href="#" class="read-more">Read Article</a>
-                </div>
-                <div class="insight-card animate-on-scroll">
-                    <div class="insight-icon">
-                        <svg viewBox="0 0 64 64" width="64" height="64">
-                            <circle cx="32" cy="32" r="30" fill="#f39c12" opacity="0.2"/>
-                            <circle cx="32" cy="32" r="18" stroke="#f39c12" stroke-width="3" fill="none"/>
-                            <path d="M32 14 L32 32 L44 32" stroke="#f39c12" stroke-width="3" stroke-linecap="round" fill="none"/>
-                            <circle cx="32" cy="14" r="3" fill="#f39c12"/>
+                    <div class="news-card-content">
+                        <span class="news-date">December 28, 2024</span>
+                        <span class="news-category">Product Update</span>
+                        <h3>Version 3.0: Enhanced Analytics Dashboard Released</h3>
+                        <p>The latest update brings an all-new analytics dashboard with real-time data visualization, customizable reports, and improved performance metrics tracking.</p>
+                        <a href="#" class="news-link">Read More</a>
+                    </div>
+                </article>
+
+                <!-- News Item 4 -->
+                <article class="news-card animate-on-scroll">
+                    <div class="news-card-image">
+                        <svg viewBox="0 0 400 250" width="400" height="250">
+                            <rect width="400" height="250" fill="rgba(243,156,18,0.1)"/>
+                            <rect x="130" y="80" width="140" height="90" rx="10" fill="#f39c12" opacity="0.3"/>
+                            <rect x="150" y="100" width="100" height="50" rx="5" fill="#f39c12" opacity="0.5"/>
+                            <text x="200" y="130" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">SECURITY</text>
                         </svg>
                     </div>
-                    <h3>Cold Chain Logistics Best Practices</h3>
-                    <p>A comprehensive guide to maintaining product quality through efficient cold chain logistics and temperature-controlled storage.</p>
-                    <a href="#" class="read-more">Read Article</a>
-                </div>
+                    <div class="news-card-content">
+                        <span class="news-date">December 20, 2024</span>
+                        <span class="news-category">Security</span>
+                        <h3>New Security Features: Enterprise-Grade Protection</h3>
+                        <p>We've strengthened our security infrastructure with end-to-end encryption, biometric authentication, and advanced threat detection capabilities.</p>
+                        <a href="#" class="news-link">Read More</a>
+                    </div>
+                </article>
+
+                <!-- News Item 5 -->
+                <article class="news-card animate-on-scroll">
+                    <div class="news-card-image">
+                        <svg viewBox="0 0 400 250" width="400" height="250">
+                            <rect width="400" height="250" fill="rgba(52,152,219,0.1)"/>
+                            <circle cx="200" cy="125" r="50" fill="#3498db" opacity="0.3"/>
+                            <path d="M170 125 L190 145 L210 105 L230 135" stroke="#3498db" stroke-width="3" fill="none"/>
+                            <circle cx="200" cy="125" r="8" fill="#3498db" opacity="0.7"/>
+                        </svg>
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-date">December 15, 2024</span>
+                        <span class="news-category">Partnership</span>
+                        <h3>Strategic Partnership with CloudTech Solutions</h3>
+                        <p>We're proud to announce our new partnership with CloudTech Solutions, enhancing our cloud infrastructure and scalability capabilities.</p>
+                        <a href="#" class="news-link">Read More</a>
+                    </div>
+                </article>
+
+                <!-- News Item 6 -->
+                <article class="news-card animate-on-scroll">
+                    <div class="news-card-image">
+                        <svg viewBox="0 0 400 250" width="400" height="250">
+                            <rect width="400" height="250" fill="rgba(231,76,60,0.1)"/>
+                            <circle cx="200" cy="125" r="60" fill="#e74c3c" opacity="0.2"/>
+                            <rect x="160" y="95" width="80" height="60" rx="5" fill="#e74c3c" opacity="0.4"/>
+                            <text x="200" y="130" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">AWARD</text>
+                        </svg>
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-date">December 10, 2024</span>
+                        <span class="news-category">Recognition</span>
+                        <h3>Beijing Jinlei Wins Innovation Excellence Award</h3>
+                        <p>Our commitment to innovation has been recognized with the prestigious Innovation Excellence Award at the Global Tech Summit 2024.</p>
+                        <a href="#" class="news-link">Read More</a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -281,83 +263,197 @@
     <section class="newsletter-section">
         <div class="container">
             <div class="newsletter-content animate-on-scroll">
+                <div class="newsletter-icon">
+                    <svg viewBox="0 0 64 64" width="64" height="64">
+                        <circle cx="32" cy="32" r="30" fill="rgba(0, 212, 255, 0.2)"/>
+                        <rect x="14" y="20" width="36" height="24" rx="3" fill="#00d4ff"/>
+                        <path d="M14 26 L32 38 L50 26" stroke="white" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
                 <h2>Subscribe to Our Newsletter</h2>
-                <p>Stay updated with the latest news, industry insights, and exclusive offers from Beijing Bingtangxin Trading Co., Ltd.</p>
-                <form class="newsletter-form" action="#" method="post">
+                <p>Stay updated with the latest news, insights, and updates from Beijing Jinlei Technology. No spam, just valuable content delivered to your inbox.</p>
+                <form class="newsletter-form" id="newsletterForm">
                     <input type="email" placeholder="Enter your email address" required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Subscribe</span>
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-badge">Browse Topics</span>
+                <h2 class="section-title">Explore by Category</h2>
+            </div>
+            <div class="categories-grid">
+                <a href="#" class="category-card animate-on-scroll">
+                    <svg viewBox="0 0 48 48" width="48" height="48">
+                        <circle cx="24" cy="24" r="22" fill="rgba(0, 212, 255, 0.2)"/>
+                        <rect x="14" y="14" width="20" height="20" rx="3" fill="#00d4ff"/>
+                        <path d="M18 24 L22 28 L30 20" stroke="white" stroke-width="2" fill="none"/>
+                    </svg>
+                    <h3>Technology</h3>
+                    <span class="category-count">12 Articles</span>
+                </a>
+                <a href="#" class="category-card animate-on-scroll">
+                    <svg viewBox="0 0 48 48" width="48" height="48">
+                        <circle cx="24" cy="24" r="22" fill="rgba(155, 89, 182, 0.2)"/>
+                        <circle cx="24" cy="20" r="8" fill="#9b59b6"/>
+                        <circle cx="16" cy="32" r="5" fill="#9b59b6"/>
+                        <circle cx="32" cy="32" r="5" fill="#9b59b6"/>
+                    </svg>
+                    <h3>Company News</h3>
+                    <span class="category-count">8 Articles</span>
+                </a>
+                <a href="#" class="category-card animate-on-scroll">
+                    <svg viewBox="0 0 48 48" width="48" height="48">
+                        <circle cx="24" cy="24" r="22" fill="rgba(39, 174, 96, 0.2)"/>
+                        <path d="M14 34 L20 24 L26 30 L32 20 L38 26" stroke="#27ae60" stroke-width="2" fill="none"/>
+                    </svg>
+                    <h3>Product Updates</h3>
+                    <span class="category-count">15 Articles</span>
+                </a>
+                <a href="#" class="category-card animate-on-scroll">
+                    <svg viewBox="0 0 48 48" width="48" height="48">
+                        <circle cx="24" cy="24" r="22" fill="rgba(243, 156, 18, 0.2)"/>
+                        <circle cx="24" cy="24" r="12" fill="none" stroke="#f39c12" stroke-width="2"/>
+                        <path d="M24 16V24L30 28" stroke="#f39c12" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                    <h3>Industry Insights</h3>
+                    <span class="category-count">10 Articles</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+        <div class="cta-background">
+            <div class="cta-grid"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2>Want to Stay Ahead of the Curve?</h2>
+                <p>Partner with Beijing Jinlei Technology to access cutting-edge solutions and expert insights that drive business growth and digital transformation.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <span>Contact Us</span>
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer" id="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <svg viewBox="0 0 200 50" width="180" height="45" class="footer-logo">
-                        <defs>
-                            <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#e74c3c"/>
-                                <stop offset="100%" style="stop-color:#c0392b"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="25" cy="25" r="20" fill="url(#logoGrad2)"/>
-                        <path d="M15 25 L25 15 L35 25 L25 35 Z" fill="white"/>
-                        <text x="55" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">BINGTANGXIN</text>
-                    </svg>
-                    <p>Leading provider of fresh agricultural products and innovative mobile management solutions for global markets.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="culture.html">Culture</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <p><strong>Address:</strong><br>Room 407-3786, Office Building of Shilibao Town Government<br>No. 67 Xidagiao Road, Miyun District, Beijing</p>
-                    <p><strong>Email:</strong><br>Business: support@bjbingtang.com<br>Partnership: lina@bjbingtang.com</p>
-                    <p><strong>Website:</strong><br>bjbingtang.com</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                    </ul>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section footer-brand">
+                        <a href="index.html" class="footer-logo">
+                            <svg viewBox="0 0 200 50" width="160" height="40">
+                                <defs>
+                                    <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#00d4ff"/>
+                                        <stop offset="100%" style="stop-color:#0099cc"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="25" cy="25" r="20" fill="url(#footerLogoGrad)"/>
+                                <polygon points="25,12 35,25 25,38 15,25" fill="white"/>
+                                <text x="55" y="30" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">JINLEI</text>
+                            </svg>
+                        </a>
+                        <p>Leading provider of mobile management applications, IoT solutions, software development, and system integration services for global markets.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" fill="#4267B2"/>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Twitter">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" fill="#1DA1F2"/>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" fill="#0077B5"/>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="#E4405F" stroke-width="2" fill="none"/>
+                                    <circle cx="12" cy="12" r="4" stroke="#E4405F" stroke-width="2" fill="none"/>
+                                    <circle cx="18" cy="6" r="1" fill="#E4405F"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="culture.html">Culture</a></li>
+                            <li><a href="news.html">News</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><a href="services.html#mobile">Mobile Apps</a></li>
+                            <li><a href="services.html#iot">IoT Solutions</a></li>
+                            <li><a href="services.html#software">Software Development</a></li>
+                            <li><a href="services.html#bigdata">Big Data Services</a></li>
+                            <li><a href="services.html#export">Import/Export</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contact Us</h4>
+                        <p class="contact-item">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" fill="rgba(0,212,255,0.2)" stroke="#00d4ff" stroke-width="2"/>
+                                <circle cx="12" cy="10" r="3" fill="none" stroke="#00d4ff" stroke-width="2"/>
+                            </svg>
+                            <span>Room 2003, 2nd Floor, Building 1, No. 19, Mishun Road, Miyun District, Beijing</span>
+                        </p>
+                        <p class="contact-item">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="rgba(0,212,255,0.2)" stroke="#00d4ff" stroke-width="2"/>
+                                <polyline points="22,6 12,13 2,6" fill="none" stroke="#00d4ff" stroke-width="2"/>
+                            </svg>
+                            <span>support@bjjinlei.com</span>
+                        </p>
+                        <p class="contact-item">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" fill="rgba(0,212,255,0.2)" stroke="#00d4ff" stroke-width="2"/>
+                            </svg>
+                            <span>lvxiaoying@bjjinlei.com</span>
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Beijing Bingtangxin Trading Co., Ltd. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" width="24" height="24">
-                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" fill="#4267B2"/>
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Twitter">
-                        <svg viewBox="0 0 24 24" width="24" height="24">
-                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" fill="#1DA1F2"/>
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" width="24" height="24">
-                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" fill="#0077B5"/>
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" width="24" height="24">
-                            <rect x="2" y="2" width="20" height="20" rx="5" stroke="#E4405F" stroke-width="2" fill="none"/>
-                            <circle cx="12" cy="12" r="4" stroke="#E4405F" stroke-width="2" fill="none"/>
-                            <circle cx="18" cy="6" r="1" fill="#E4405F"/>
-                        </svg>
-                    </a>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Beijing Jinlei Technology Co., Ltd. All rights reserved.</p>
+                    <div class="footer-legal">
+                        <a href="privacy.html">Privacy Policy</a>
+                        <span class="separator">|</span>
+                        <a href="terms.html">Terms of Service</a>
+                    </div>
                 </div>
             </div>
         </div>

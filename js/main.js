@@ -1,70 +1,193 @@
-/* ================================================
-   Beijing Bingtangxin Trading Co., Ltd.
-   Corporate Website JavaScript
-   Rich Animations & Interactions
-   ================================================ */
+/* ========================================
+   Beijing Jinlei Technology - Main JavaScript
+   Interactive Features and Animations
+   ======================================== */
 
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
-    // ================================================
-    // Navigation Functionality
-    // ================================================
-    
-    const navbar = document.getElementById('navbar');
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
+    // Initialize all modules
+    initPreloader();
+    initNavigation();
+    initMobileMenu();
+    initScrollAnimations();
+    initNavbarScroll();
+    initSmoothScroll();
+    initForms();
+    initCounters();
+});
 
-    // Navbar scroll effect
-    function handleNavbarScroll() {
-        if (window.scrollY > 50) {
+/* ========================================
+   Preloader
+   ======================================== */
+function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    
+    // Hide preloader after page loads
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            preloader.classList.add('hidden');
+            // Trigger animations after preloader is hidden
+            triggerInitialAnimations();
+        }, 800);
+    });
+
+    // Fallback: Hide preloader after 3 seconds max
+    setTimeout(function() {
+        preloader.classList.add('hidden');
+        triggerInitialAnimations();
+    }, 3000);
+}
+
+function triggerInitialAnimations() {
+    // Add animated class to elements in hero section
+    const heroElements = document.querySelectorAll('.hero .animate-on-scroll');
+    heroElements.forEach((el, index) => {
+        setTimeout(() => {
+            el.classList.add('animated');
+        }, index * 150);
+    });
+}
+
+/* ========================================
+   Navigation
+   ======================================== */
+function initNavigation() {
+    const navMenu = document.getElementById('navMenu');
+    
+    // Add active class to current page link
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = navMenu.querySelectorAll('a');
+    
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage || 
+            (currentPage === '' && linkPage === 'index.html') ||
+            (currentPage === '/' && linkPage === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+}
+
+/* ========================================
+   Mobile Menu
+   ======================================== */
+function initMobileMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileMenuLinks = mobileMenuOverlay.querySelectorAll('a');
+    
+    // Toggle mobile menu
+    menuToggle.addEventListener('click', function() {
+        mobileMenuOverlay.classList.toggle('active');
+        document.body.style.overflow = mobileMenuOverlay.classList.contains('active') ? 'hidden' : '';
+        
+        // Animate hamburger to X
+        const menuLines = menuToggle.querySelectorAll('.menu-line');
+        if (mobileMenuOverlay.classList.contains('active')) {
+            menuLines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            menuLines[1].style.opacity = '0';
+            menuLines[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        } else {
+            menuLines[0].style.transform = '';
+            menuLines[1].style.opacity = '';
+            menuLines[2].style.transform = '';
+        }
+    });
+
+    // Close mobile menu when clicking a link
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Reset hamburger
+            const menuLines = menuToggle.querySelectorAll('.menu-line');
+            menuLines[0].style.transform = '';
+            menuLines[1].style.opacity = '';
+            menuLines[2].style.transform = '';
+        });
+    });
+
+    // Close mobile menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+/* ========================================
+   Scroll Animations
+   ======================================== */
+function initScrollAnimations() {
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    
+    // Create intersection observer for scroll animations
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                // Optional: Stop observing after animation
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements with animate-on-scroll class
+    animateElements.forEach(el => {
+        observer.observe(el);
+    });
+}
+
+/* ========================================
+   Navbar Scroll Effect
+   ======================================== */
+function initNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset;
+        
+        // Add scrolled class when scrolling down
+        if (currentScroll > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-    }
+        
+        lastScroll = currentScroll;
+    });
+}
 
-    window.addEventListener('scroll', handleNavbarScroll);
-    handleNavbarScroll(); // Initial check
-
-    // Mobile menu toggle
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', navMenu.classList.contains('active'));
-        });
-
-        // Close menu when clicking on a link
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                navMenu.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-            }
-        });
-    }
-
-    // ================================================
-    // Smooth Scroll for Anchor Links
-    // ================================================
-    
+/* ========================================
+   Smooth Scroll
+   ======================================== */
+function initSmoothScroll() {
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            const href = this.getAttribute('href');
             
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
+            // Skip if it's just "#" or empty
+            if (href === '#' || href === '') return;
+            
+            const target = document.querySelector(href);
+            
+            if (target) {
                 e.preventDefault();
-                const navbarHeight = navbar.offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
+                
+                const navbarHeight = document.getElementById('navbar').offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
                 
                 window.scrollTo({
                     top: targetPosition,
@@ -73,346 +196,255 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+}
 
-    // ================================================
-    // Scroll Animations (Intersection Observer)
-    // ================================================
-    
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    
-    if ('IntersectionObserver' in window) {
-        const animationObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        animatedElements.forEach(el => {
-            animationObserver.observe(el);
-        });
-    } else {
-        // Fallback for older browsers
-        animatedElements.forEach(el => {
-            el.classList.add('visible');
-        });
-    }
-
-    // ================================================
-    // Counter Animation for Stats
-    // ================================================
-    
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    function animateCounter(element, target) {
-        const duration = 2000;
-        const start = 0;
-        const increment = target / (duration / 16);
-        let current = start;
-
-        function updateCounter() {
-            current += increment;
-            if (current < target) {
-                element.textContent = Math.floor(current).toLocaleString();
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.textContent = target.toLocaleString();
-            }
-        }
-
-        updateCounter();
-    }
-
-    if ('IntersectionObserver' in window) {
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.dataset.count, 10);
-                    animateCounter(entry.target, target);
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        statNumbers.forEach(stat => {
-            if (stat.dataset.count) {
-                statsObserver.observe(stat);
-            }
-        });
-    }
-
-    // ================================================
-    // Parallax Effect for Hero Section
-    // ================================================
-    
-    const heroSection = document.querySelector('.hero');
-    
-    if (heroSection) {
-        window.addEventListener('scroll', function() {
-            const scrolled = window.scrollY;
-            if (scrolled < window.innerHeight) {
-                heroSection.style.backgroundPositionY = scrolled * 0.5 + 'px';
-            }
-        });
-    }
-
-    // ================================================
-    // Magnetic Button Effect
-    // ================================================
-    
-    const magneticButtons = document.querySelectorAll('.btn, .app-store-btn, .platform-link');
-    
-    magneticButtons.forEach(button => {
-        button.addEventListener('mousemove', function(e) {
-            const rect = button.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            
-            button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
-        });
-
-        button.addEventListener('mouseleave', function() {
-            button.style.transform = 'translate(0, 0)';
-        });
-    });
-
-    // ================================================
-    // Ripple Effect for Buttons
-    // ================================================
-    
-    const rippleButtons = document.querySelectorAll('.btn');
-    
-    rippleButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = button.getBoundingClientRect();
-            
-            ripple.style.cssText = `
-                position: absolute;
-                background: rgba(255, 255, 255, 0.3);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: rippleEffect 0.6s linear;
-                pointer-events: none;
-            `;
-            
-            const size = Math.max(rect.width, rect.height);
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-            ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-            
-            button.appendChild(ripple);
-            
-            setTimeout(() => ripple.remove(), 600);
-        });
-    });
-
-    // ================================================
-    // Form Validation & Enhancement
-    // ================================================
-    
+/* ========================================
+   Form Handling
+   ======================================== */
+function initForms() {
+    // Contact Form
     const contactForm = document.getElementById('contactForm');
-    
     if (contactForm) {
-        const inputs = contactForm.querySelectorAll('input, textarea, select');
-        
-        // Add focus effects
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.classList.remove('focused');
-                
-                // Validate on blur
-                if (this.hasAttribute('required') && !this.value.trim()) {
-                    this.parentElement.classList.add('error');
-                } else {
-                    this.parentElement.classList.remove('error');
-                }
-            });
-        });
-
-        // Form submission
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            let isValid = true;
-            const requiredFields = contactForm.querySelectorAll('[required]');
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.parentElement.classList.add('error');
-                } else {
-                    field.parentElement.classList.remove('error');
-                }
-            });
-
-            // Email validation
-            const emailField = contactForm.querySelector('input[type="email"]');
-            if (emailField && emailField.value) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(emailField.value)) {
-                    isValid = false;
-                    emailField.parentElement.classList.add('error');
-                }
-            }
-
-            if (isValid) {
-                // Show success message (in production, this would send data to a server)
-                const submitBtn = contactForm.querySelector('button[type="submit"]');
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Message Sent!';
-                submitBtn.style.background = '#27ae60';
-                
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.style.background = '';
-                    contactForm.reset();
-                }, 3000);
-            }
-        });
+        contactForm.addEventListener('submit', handleContactForm);
     }
 
-    // ================================================
     // Newsletter Form
-    // ================================================
-    
-    const newsletterForm = document.querySelector('.newsletter-form');
-    
+    const newsletterForm = document.getElementById('newsletterForm');
     if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const emailInput = this.querySelector('input[type="email"]');
-            const submitBtn = this.querySelector('button[type="submit"]');
-            
-            if (emailInput && emailInput.value) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                
-                if (emailRegex.test(emailInput.value)) {
-                    const originalText = submitBtn.textContent;
-                    submitBtn.textContent = 'Subscribed!';
-                    submitBtn.style.background = '#27ae60';
-                    emailInput.value = '';
-                    
-                    setTimeout(() => {
-                        submitBtn.textContent = originalText;
-                        submitBtn.style.background = '';
-                    }, 3000);
-                }
+        newsletterForm.addEventListener('submit', handleNewsletterForm);
+    }
+}
+
+function handleContactForm(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    
+    // Show loading state
+    submitBtn.innerHTML = '<span>Sending...</span>';
+    submitBtn.disabled = true;
+    
+    // Simulate form submission
+    setTimeout(() => {
+        // Reset form
+        form.reset();
+        
+        // Show success message
+        submitBtn.innerHTML = '<span>Message Sent!</span>';
+        submitBtn.style.background = '#27ae60';
+        
+        // Reset button after delay
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.background = '';
+        }, 3000);
+        
+        // Show notification
+        showNotification('Thank you! Your message has been sent successfully.', 'success');
+    }, 1500);
+}
+
+function handleNewsletterForm(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const input = form.querySelector('input[type="email"]');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    if (!input.value) {
+        showNotification('Please enter your email address.', 'error');
+        return;
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(input.value)) {
+        showNotification('Please enter a valid email address.', 'error');
+        return;
+    }
+    
+    const originalText = submitBtn.innerHTML;
+    
+    // Show loading state
+    submitBtn.innerHTML = '<span>Subscribing...</span>';
+    submitBtn.disabled = true;
+    
+    // Simulate subscription
+    setTimeout(() => {
+        form.reset();
+        submitBtn.innerHTML = '<span>Subscribed!</span>';
+        
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, 3000);
+        
+        showNotification('Thank you for subscribing! You will receive our latest updates.', 'success');
+    }, 1500);
+}
+
+function showNotification(message, type) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <span>${message}</span>
+        <button class="notification-close">&times;</button>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        padding: 15px 25px;
+        background: ${type === 'success' ? '#27ae60' : type === 'error' ? '#e74c3c' : '#3498db'};
+        color: white;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    `;
+    
+    // Add animation keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .notification-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        .notification-close:hover { opacity: 1; }
+    `;
+    document.head.appendChild(style);
+    
+    // Add to DOM
+    document.body.appendChild(notification);
+    
+    // Close button
+    notification.querySelector('.notification-close').addEventListener('click', () => {
+        notification.style.animation = 'slideIn 0.3s ease reverse';
+        setTimeout(() => notification.remove(), 300);
+    });
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.animation = 'slideIn 0.3s ease reverse';
+            setTimeout(() => notification.remove(), 300);
+        }
+    }, 5000);
+}
+
+/* ========================================
+   Counter Animation
+   ======================================== */
+function initCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    if (counters.length === 0) return;
+    
+    // Check if element is in viewport
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
             }
         });
-    }
-
-    // ================================================
-    // Card Hover Effects
-    // ================================================
+    }, observerOptions);
     
-    const featureCards = document.querySelectorAll('.feature-card, .value-card, .team-card, .news-card, .insight-card');
-    
-    featureCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.zIndex = '10';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.zIndex = '1';
-        });
+    counters.forEach(counter => {
+        observer.observe(counter);
     });
+}
 
-    // ================================================
-    // SVG Icon Animations
-    // ================================================
+function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-target')) || parseInt(element.textContent);
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
     
-    const animatedIcons = document.querySelectorAll('.feature-icon svg, .service-icon svg, .value-icon svg, .team-icon svg, .insight-icon svg');
-    
-    animatedIcons.forEach(icon => {
-        icon.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.1)';
-            this.style.transition = 'transform 0.3s ease';
-        });
-        
-        icon.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-    });
-
-    // ================================================
-    // Lazy Loading for Images (if any)
-    // ================================================
-    
-    if ('loading' in HTMLImageElement.prototype) {
-        // Native lazy loading supported
-        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-        lazyImages.forEach(img => {
-            img.src = img.dataset.src;
-        });
-    } else {
-        // Fallback for older browsers
-        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-        
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-
-            lazyImages.forEach(img => {
-                imageObserver.observe(img);
-            });
+    const updateCounter = () => {
+        current += step;
+        if (current < target) {
+            element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '') + 
+                                  (element.textContent.includes('%') ? '%' : '') +
+                                  (element.textContent.includes('/') ? '/' : '');
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = element.textContent;
         }
-    }
-
-    // ================================================
-    // Back to Top Button (if page is long)
-    // ================================================
+    };
     
+    updateCounter();
+}
+
+/* ========================================
+   Parallax Effect (Optional)
+   ======================================== */
+function initParallax() {
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.parallax');
+        
+        parallaxElements.forEach(el => {
+            const speed = 0.5;
+            el.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    });
+}
+
+/* ========================================
+   Back to Top Button (Optional)
+   ======================================== */
+function initBackToTop() {
     const backToTopBtn = document.createElement('button');
-    backToTopBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" width="24" height="24">
-            <path d="M12 4l-8 8h5v8h6v-8h5z" fill="currentColor"/>
-        </svg>
-    `;
     backToTopBtn.className = 'back-to-top';
-    backToTopBtn.setAttribute('aria-label', 'Back to top');
+    backToTopBtn.innerHTML = '↑';
     backToTopBtn.style.cssText = `
         position: fixed;
         bottom: 30px;
         right: 30px;
         width: 50px;
         height: 50px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        background: linear-gradient(135deg, #00d4ff, #0099cc);
         color: white;
         border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
         z-index: 999;
-        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
     `;
     
     document.body.appendChild(backToTopBtn);
     
+    // Show/hide based on scroll position
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 500) {
+        if (window.pageYOffset > 500) {
             backToTopBtn.style.opacity = '1';
             backToTopBtn.style.visibility = 'visible';
         } else {
@@ -421,93 +453,148 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Scroll to top on click
     backToTopBtn.addEventListener('click', function() {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
     });
-    
-    backToTopBtn.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-5px)';
-    });
-    
-    backToTopBtn.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-    });
+}
 
-    // ================================================
-    // Preloader (optional - can be removed if not needed)
-    // ================================================
-    
-    window.addEventListener('load', function() {
-        document.body.classList.add('loaded');
-    });
+/* ========================================
+   Utility Functions
+   ======================================== */
 
-    // ================================================
-    // Keyboard Navigation Enhancements
-    // ================================================
-    
-    // Skip link functionality
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.textContent = 'Skip to main content';
-    skipLink.className = 'sr-only';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 0;
-        background: #e74c3c;
-        color: white;
-        padding: 8px 16px;
-        z-index: 10000;
-        transition: top 0.3s;
-    `;
-    
-    skipLink.addEventListener('focus', function() {
-        this.style.top = '0';
-    });
-    
-    skipLink.addEventListener('blur', function() {
-        this.style.top = '-40px';
-    });
-    
-    document.body.insertBefore(skipLink, document.body.firstChild);
-
-    // ================================================
-    // Performance: Debounce Scroll Events
-    // ================================================
-    
-    function debounce(func, wait = 10) {
-        let timeout;
-        return function(...args) {
+// Debounce function for performance
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
             clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), wait);
+            func(...args);
         };
-    }
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
 
-    // ================================================
-    // Console Info (for development)
-    // ================================================
+// Throttle function for scroll events
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Check if device is touch-enabled
+function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
+
+// Get current page section
+function getCurrentSection() {
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPos = window.pageYOffset + 200;
     
-    console.log('%c Beijing Bingtangxin Trading Co., Ltd. ', 
-        'background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; font-size: 16px; padding: 10px 20px; border-radius: 5px;');
-    console.log('%c Corporate Website - All Rights Reserved ', 
-        'background: #2c3e50; color: white; font-size: 12px; padding: 5px 10px; border-radius: 3px;');
+    sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const id = section.getAttribute('id');
+        
+        if (scrollPos >= top && scrollPos < top + height) {
+            // Update navigation if needed
+            updateActiveNav(id);
+        }
+    });
+}
 
+function updateActiveNav(sectionId) {
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+/* ========================================
+   Accessibility Enhancements
+   ======================================== */
+
+// Handle focus visibility
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab') {
+        document.body.classList.add('keyboard-nav');
+    }
 });
 
-// ================================================
-// CSS for Ripple Animation
-// ================================================
+document.addEventListener('mousedown', function() {
+    document.body.classList.remove('keyboard-nav');
+});
 
-const rippleStyle = document.createElement('style');
-rippleStyle.textContent = `
-    @keyframes rippleEffect {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
+// Skip link functionality
+const skipLink = document.createElement('a');
+skipLink.href = '#main-content';
+skipLink.textContent = 'Skip to main content';
+skipLink.className = 'skip-link';
+skipLink.style.cssText = `
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #00d4ff;
+    color: white;
+    padding: 10px 20px;
+    z-index: 10001;
+    transition: top 0.3s;
 `;
-document.head.appendChild(rippleStyle);
+skipLink.addEventListener('focus', function() {
+    this.style.top = '0';
+});
+skipLink.addEventListener('blur', function() {
+    this.style.top = '-40px';
+});
+
+document.body.insertBefore(skipLink, document.body.firstChild);
+
+/* ========================================
+   Print Styles Helper
+   ======================================== */
+window.addEventListener('beforeprint', function() {
+    // Hide preloader when printing
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        preloader.style.display = 'none';
+    }
+});
+
+/* ========================================
+   Page Visibility API
+   ======================================== */
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') {
+        // Page is visible - resume animations
+        document.body.style.animationPlayState = 'running';
+    } else {
+        // Page is hidden - pause animations
+        document.body.style.animationPlayState = 'paused';
+    }
+});
+
+/* ========================================
+   Export for potential module use
+   ======================================== */
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        showNotification,
+        debounce,
+        throttle,
+        isTouchDevice
+    };
+}
